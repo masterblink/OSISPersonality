@@ -39,6 +39,10 @@ app.get('/', function(req, res) {
   res.render('index', { ct: req._csrfToken });
 });
 
+app.get('/contactenos', function(req, res) {
+    res.render('contactenos', { ct: req._csrfToken });
+});
+
 app.post('/api/profile', function(req, res, next) {
   var parameters = extend(req.body, { acceptLanguage : i18n.lng() });
 
