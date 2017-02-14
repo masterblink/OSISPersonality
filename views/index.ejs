@@ -1,38 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
-<head>
-  <title>OSISPersonality</title>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="ct" content="<%= ct %>">
-  <link rel="shortcut icon" href="/images/ico.png" type="image/x-icon">
-  <link rel="icon" href="/images/ico.png" type="image/x-icon">
-  <link rel="stylesheet" href="/css/watson-bootstrap-dark.css">
-  <link rel="stylesheet" href="/css/banner.css">
-  <link rel="stylesheet" href="/css/style.css">
-  <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
-</head>
+<% include partials/head.ejs %>
 
 <body>
   <div class="row service-container">
     <div class="col-lg-12 service-header">
-      <div class="row top-nav navbar-fixed-top">
-        <div class="container">
-          <a href="https://osispersonality.mybluemix.net/" class="top-nav--logo-link">
-            <h3 class="heading left">
-              <span class="top-nav--logo-wdc"></span>
-            </h3>
-          </a>
-          <nav class="top-nav--nav">
-            <li class="top-nav--nav-item"><a href="#">¿Qu&eacute; es OSISPersonality?</a></li>
-            <li class="top-nav--nav-item"><a href="#">Servicio</a></li>
-            <li class="top-nav--nav-item"><a href="#">Cont&aacute;ctenos</a></li>
-            <!--<li class="top-nav&#45;&#45;nav-item"><a href="http://developer.ibm.com/watson/">Community</a></li>-->
-          </nav>
-        </div>
-      </div>
+      <% include partials/nav.ejs %>
       <div class="row header" style="margin-top: 5px;">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
           <!-- Indicators -->
@@ -100,7 +73,7 @@
       <div class="row">
         <div class="col-lg-6 col-md-12 col-xs-12">
           <h2>Ingrese su propio texto</h2>
-          <p>Necesitamos un m&iacute;nimo de 3500 palabras, lo ideal serían 6000 palabras o m&aacute; para c&aacute;lcular estad&iacute;sticamente resultados significativos. Ver <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/science.shtml">la ciencia detr&aacute;s del servicio</a>.</p>
+          <p>Necesitamos un m&iacute;nimo de 3500 palabras, lo ideal serían 6000 palabras o m&aacute;s para c&aacute;lcular de forma precisa su personalidad y obtener resultados significativos. Ver <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/science.shtml">la ciencia detr&aacute;s del servicio</a>.</p>
           <p>El texto puede contener palabras que utilizamos diariamente, relacionadas a experiencias personales, pensamientos y respuestas. Ver <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/guidance.shtml#optimal">Gu&iacute;a de Uso</a> para m&aacute;s detalles.</p>
           <div class="well">
             <div class="form-group row">
@@ -208,16 +181,8 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
-  <script type="text/javascript" src="/js/demo.js"></script>
-  <script type="text/javascript" src="/js/personality.js"></script>
-  <script type="text/javascript" src="/js/string-utils.js"></script>
-  <script type="text/javascript" src="/js/i18n.js"></script>
-  <script type="text/javascript" src="/js/textsummary.js"></script>
-  <script type="text/javascript">
-    textSummary.init('json');
-  </script>
+  <% include partials/footer.ejs %>
+  <% include partials/scripts.ejs %>
 </body>
 
 </html>
