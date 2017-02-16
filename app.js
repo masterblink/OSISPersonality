@@ -35,6 +35,24 @@ var personalityInsights = watson.personality_insights({
   password: '<password>'
 });
 
+/*jshint node:true*/
+var cfenv = require('cfenv');
+var appEnv = cfenv.getAppEnv();
+var dbCreds =  appEnv.getServiceCreds('OSISP_db');
+
+var nano, prints;
+
+if (dbCreds) {
+    console.log('URL is ' + dbCreds.url);
+    nano = require('nano')(dbCreds.url);
+    prints = nano.use('compania_cia');
+} else {
+
+    console.log('NO DB!');
+}
+
+
+
 app.get('/', function(req, res) {
   res.render('index', { ct: req._csrfToken });
 });
@@ -42,6 +60,10 @@ app.get('/', function(req, res) {
 app.get('/contactenos', function(req, res) {
     res.render('contactenos', { ct: req._csrfToken });
 });
+
+
+
+
 
 app.post('/api/profile', function(req, res, next) {
   var parameters = extend(req.body, { acceptLanguage : i18n.lng() });
