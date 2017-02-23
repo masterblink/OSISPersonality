@@ -6,109 +6,63 @@
 <div class="row service-container">
     <div class="col-lg-12 service-header">
         <% include partials/nav.ejs %>
-        <div class="row header" style="margin-top: 5px;">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <!--<li data-target="#myCarousel" data-slide-to="2"></li>
-                    <li data-target="#myCarousel" data-slide-to="3"></li>-->
-                </ol>
 
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner" role="listbox">
-
-                    <div class="item ">
-                        <img src="/images/slide/slider2.jpg" alt="" width="100%">
-                        <div class="carousel-caption">
-                            <h3>Seleccione al personal m&aacute;s ideal para su equipo</h3>
-                            <p>.</p>
-                        </div>
-                    </div>
-
-                    <div class="item active">
-                        <img src="/images/slide/slider3.jpg" alt="" width="100%">
-                        <div class="carousel-caption">
-                            <h3>Mejore el proceso de b&uacute;squeda de talentos para su empresa.</h3>
-                            <p></p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                    <span class="sr-only">Proximo</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                    <span class="sr-only">Anterior</span>
-                </a>
-            </div>
-
-            <!--<div class="container">
-              <div class="avatar img-container col-lg-2 col-md-2 col-sm-2 hidden-xs">
-                <img src="/images/app.png" class="service-icon">
-              </div>
-              <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 dialog-description">
-                <h1 style="font-size:50px;" class="service-title">OsisPersonality</h1>
-                <p>The OSIS and IBM Watson Personality Insights service uses linguistic analytics to extract a spectrum of cognitive and social characteristics from the text data that a person generates through blogs, tweets, forum posts, and more.</p>
-                <div class="resource">
-                  <img src="/images/link.svg" class="link-icon">
-                  <strong>Resources:</strong>
-                </div>
-                <div class="resource-item-container"><a href="https://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/personality-insights/api" class="resource-item">API Reference</a><a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/"
-                  class="resource-item">Documentation</a><a href="https://github.com/watson-developer-cloud/personality-insights-nodejs" class="resource-item">Fork on Github</a><a href="http://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/personality-insights-nodejs.git"
-                  class="resource-item">Fork and Deploy on Bluemix</a></div>
-              </div>
-            </div>-->
-        </div>
     </div>
 </div>
 <div class="row">
     <div class="container">
+        <div class="row">
+            <div class="container">
 
+
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-6 col-md-12 col-xs-12">
-                <h2>Ingrese su propio texto</h2>
-                <p>Necesitamos un m&iacute;nimo de 3500 palabras, lo ideal serían 6000 palabras o m&aacute;s para c&aacute;lcular de forma precisa su personalidad y obtener resultados significativos. Ver <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/science.shtml">la ciencia detr&aacute;s del servicio</a>.</p>
-                <p>El texto puede contener palabras que utilizamos diariamente, relacionadas a experiencias personales, pensamientos y respuestas. Ver <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/personality-insights/guidance.shtml#optimal">Gu&iacute;a de Uso</a> para m&aacute;s detalles.</p>
-                <div class="well">
-                    <div class="form-group row">
-                        <div style="padding:0px;" class="col-lg-12 col-xs-12">
-                            <label class="col-lg-6 col-md-6 col-xs-6 control-label">Seleccione Idioma:</label>
-                            <div class="col-lg-6 col-md-6 col-xs-6 sample-radio-list">
-                                <div class="sample-radio-container">
-                                    <label>
-                                        <input id="english_radio" type="radio" name="sample_text" value="en" class="sample-radio">
-                                        <span>Ingl&eacute;s</span>
-                                    </label>
-                                </div>
-                                <div class="sample-radio-container">
-                                    <label>
-                                        <input type="radio" name="sample_text" value="es" checked class="sample-radio">
-                                        <span>Espa&ntilde;ol</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <textarea rows="12" required="true" name="text" placeholder="Por favor ingrese el texto a analizar (al menos 100 palabras)..." class="content form-control"></textarea>
-                            <div class="text-right wordsCountFootnote">
-                                <span class="wordsCount small"></span>
-                                <span class="small"> palabras</span>
-                            </div>
+                <form method="post" id="form-contacto" action="/quotes">
+                    <div class="form-group">
+                        <label for="nombres">Nombres * </label>
+                        <div class="form-control">
+                            <input name="nombres" placeholder="Nombres" id="nombres" type="text">
                         </div>
                     </div>
-                    <div class="form-group row buttons-container">
-                        <div class="col-lg-4 col-xs-4">
-                            <button type="button" class="btn btn-block clear-btn">Borrar</button>
-                        </div>
-                        <div class="col-lg-4 col-lg-push-4 col-xs-4 col-xs-push-4">
-                            <button type="button" class="btn btn-block analysis-btn">Analizar</button>
+                    <div class="form-group">
+                        <label for="apellidos">Apellidos *</label>
+                        <div class="form-control">
+                            <input name="apellidos" placeholder="Apellidos" id="apellidos" type="text">
                         </div>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <div class="form-control">
+                            <input name="email" placeholder="E-mail" id="email" type="text">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono*</label>
+                        <div class="form-control">
+                            <input name="telefono" placeholder="Teléfono" id="telefono" type="text">
+                        </div>
+                    </div>
+
+                    <input name="origen" value="Contáctenos" type="hidden">
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje *</label>
+                        <div class="form-control">
+                            <textarea name="mensaje" placeholder="Consulta" id="mensaje"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-btn">
+                        <input value="ENVIAR" class="btn" id="btn-contactenos" type="submit">
+                        <img class="ajax_loader" src="images/ajax-loader.gif" alt="Enviando...">
+                    </div>
+                    <div>
+                        <p id="mensajeenviado"></p>
+                    </div>
+                </form>
+
+
             </div>
             <div class="col-lg-6 col-md-12 col-xs-12">
                 <div style="display:none;" class="form-group row loading text-center loading">
@@ -183,6 +137,7 @@
 </div>
 <% include partials/footer.ejs %>
 <% include partials/scripts.ejs %>
+<script type="text/javascript" src="/js/contactenos.js"></script>
 </body>
 
 </html>
