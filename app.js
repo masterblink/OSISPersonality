@@ -22,11 +22,14 @@ var express    = require('express'),
   extend       = require('util')._extend,
   i18n         = require('i18next');
 
+
 //i18n settings
 require('./config/i18n')(app);
 
 // Bootstrap application settings
 require('./config/express')(app);
+
+var db = require('./db');
 
 // Create the service wrapper
 var personalityInsights = watson.personality_insights({
@@ -35,31 +38,67 @@ var personalityInsights = watson.personality_insights({
   password: '<password>'
 });
 
-/*jshint node:true*/
-var cfenv = require('cfenv');
-var appEnv = cfenv.getAppEnv();
-var dbCreds =  appEnv.getServiceCreds('OSISP_db');
-
-var nano, prints;
-
-if (dbCreds) {
-    console.log('URL is ' + dbCreds.url);
-    nano = require('nano')(dbCreds.url);
-    prints = nano.use('compania_cia');
+var mongo = process.env.VCAP_SERVICES;
+var port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
+var conn_str = "";
+if (mongo) {
+    var env = JSON.parse(mongo);
+    if (env['mongodb']) {
+        mongo = env['mongodb'][0]['credentials'];
+        if (mongo.url) {
+            conn_str = mongo.url;
+        } else {
+            console.log("No mongo found");
+        }
+    } else {
+        conn_str = 'mongodb://localhost:27017';
+    }
 } else {
-
-    console.log('NO DB!');
+    conn_str = 'mongodb://localhost:27017';
 }
 
-
-
 app.get('/', function(req, res) {
-  res.render('index', { ct: req._csrfToken });
+    res.render('index', { ct: req._csrfToken });
 });
 
 app.get('/contactenos', function(req, res) {
+
     res.render('contactenos', { ct: req._csrfToken });
 });
+
+app.post('/quotes', function(req, res) {
+    console.log(req.body);
+
+    db.get().collection('contactenos').save(req.body, function(err, result) {
+        if (err) return console.log(err);
+
+        console.log('saved to database');
+        res.redirect('/contactenos')
+    });
+    /*db.collection('quotes').save(req.body, function(err, result) {
+     if (err) return console.log(err);
+
+     console.log('saved to database');
+     res.redirect('/contactenos')
+     })*/
+});
+
+//app.use('/contactenos', require('./controllers/contactenos'));
+
+db.connect(conn_str, function(err) {
+    if (err) {
+        console.log(conn_str + ' Unable to connect to Mongo.');
+        process.exit(1)
+    } else {
+        /*app.listen(3000, function() {
+            console.log('Listening on port 3000...')
+        })*/
+    }
+});
+
+
+
+
 
 
 
@@ -79,6 +118,6 @@ app.post('/api/profile', function(req, res, next) {
 // error-handler settings
 require('./config/error-handler')(app);
 
-var port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
+
 app.listen(port);
 console.log('listening at:', port);
